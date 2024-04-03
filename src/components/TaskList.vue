@@ -3,7 +3,7 @@
         <ul class="task-list">
             <task-item 
                 :showButtons="true"
-                v-for="task in tasks" :key="task.id"
+                v-for="task in getSortedAndSearchedTasks" :key="task.id"
                 :task="task"
             />
         </ul>
@@ -16,8 +16,8 @@
 
 <script>
     import TaskItem from '@/components/TaskItem';
-    import { mapState } from 'pinia'
-    import { useTaskStore } from '@/stores/TaskStore'
+    import { mapState } from 'pinia';
+    import { useTaskStore } from '@/stores/TaskStore';
 
     export default {
         components: {
@@ -25,7 +25,10 @@
         },
 
         computed: {
-            ...mapState(useTaskStore, ['tasks'])
+            ...mapState(useTaskStore, [
+                'tasks',
+                'getSortedAndSearchedTasks'
+            ])
         }
     }
 </script>

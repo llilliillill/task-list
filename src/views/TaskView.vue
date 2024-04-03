@@ -1,8 +1,8 @@
 <template>  
-    <header>Задача №{{ this.$route.params.id }}</header>
+    <header>Задача №{{ $route.params.id }}</header>
 
     <task-item 
-        :task="getTaskById(this.$route.params.id)" 
+        :task="getTaskById($route.params.id)" 
         :showButtons="false"
     />
 </template>

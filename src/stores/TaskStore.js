@@ -28,6 +28,11 @@ export const useTaskStore = defineStore('TaskStore', {
             text: ''
         },
 
+        query: {
+            search: '',
+            select: 'all'
+        },
+
         taskError: {
             title: '',
             text: ''
@@ -49,6 +54,28 @@ export const useTaskStore = defineStore('TaskStore', {
             return JSON.parse(JSON.stringify(
                 state.tasks.filter(task => task.id == idTask))
             )[0]
+        },
+
+        // Сортировка задач завершеные/незавершеные
+        getSortedTasks(state) {
+            let result = state.tasks
+
+            if (state.query.select === 'completed') {
+                result = state.tasks.filter(task => task.status)
+            }
+            
+            if (state.query.select === 'unfinished') {
+                result = state.tasks.filter(task => !task.status)
+            }
+
+            return result
+        },
+
+        // Поиск задач с сортировкой
+        getSortedAndSearchedTasks(state) {
+            return state.getSortedTasks.filter(task => 
+                task.title.toLowerCase().includes(state.query.search.toLowerCase())
+            )
         }
     },
 
@@ -93,10 +120,9 @@ export const useTaskStore = defineStore('TaskStore', {
                     text: this.task.text,
                     status: false
                 })
-                this.task = { title: '', text: ''}
+                this.task = { title: '', text: '' }
                 this.showTaskForm = false
             }
-        }
-        
+        },
     }
 });

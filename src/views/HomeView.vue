@@ -6,23 +6,27 @@
     <button-green @click="this.openTaskForm" class="add-task">+ Добавить</button-green>
   </header>
 
+  <task-filter />
   <task-list />
 </template>
 
 <script>
   import TaskList from '@/components/TaskList';
   import TaskForm from '@/components/TaskForm';
+  import TaskFilter from '@/components/TaskFilter';
   import { mapState, mapActions } from 'pinia';
   import { useTaskStore } from '@/stores/TaskStore';
 
   export default {
     components: {
       TaskList,
-      TaskForm
+      TaskForm,
+      TaskFilter
     },
 
     computed: {
       ...mapState(useTaskStore, [
+        'tasks',
         'showTaskForm'
       ])
     },

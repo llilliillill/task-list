@@ -8,6 +8,7 @@
 
             <span class="error">{{ taskError.title }}</span>
             <input 
+                v-focus
                 type="text"
                 v-model="task.title" 
                 class="text-task" 
@@ -24,7 +25,7 @@
             
             <button-green
                 class="add-task" 
-                @click="this.addTask(task)"
+                @click="this.addTask"
             >
                 Добавить
             </button-green>
