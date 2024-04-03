@@ -21,7 +21,19 @@
             </span>
         </div>
 
-        <button-close v-if="showButtons" @click="this.taskDelete(task.id)" />
+        <button-white 
+            v-if="showButtons" 
+            @click="this.openTaskForm({ 
+                id: task.id,
+                title: task.title,
+                text: task.text,
+            })"
+        >✎</button-white>
+
+        <button-white 
+            v-if="showButtons" 
+            @click="this.taskDelete(task.id)" 
+        >✖</button-white>
     </li>
 </template>
 
@@ -49,6 +61,7 @@
             ...mapActions(useTaskStore, [
                 'changeTaskStatus', 
                 'taskDelete',
+                'openTaskForm'
             ])
         }
     }

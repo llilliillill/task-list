@@ -1,6 +1,7 @@
 {
-  "name": "test",
+  "name": "task-list",
   "version": "0.1.0",
+  "author": "Istratov Alexey",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

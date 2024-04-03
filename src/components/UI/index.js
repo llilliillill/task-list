@@ -1,7 +1,7 @@
 import buttonGreen from '@/components/UI/buttonGreen.vue';
-import buttonClose from '@/components/UI/buttonClose.vue';
+import buttonWhite from '@/components/UI/buttonWhite.vue';
 
 export default [
     buttonGreen,
-    buttonClose
+    buttonWhite
 ];

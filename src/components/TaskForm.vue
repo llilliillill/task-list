@@ -2,8 +2,10 @@
     <form @submit.prevent>
         <section>
             <div class="header">
-                <span class="title">Добавить задачу:</span>
-                <button-close @click="this.openTaskForm" />
+                <span v-if="idEditTask" class="title">Изменить задачу:</span>
+                <span v-else class="title">Добавить задачу:</span>
+
+                <button-white @click="this.openTaskForm">✖</button-white>
             </div>
 
             <span class="error">{{ taskError.title }}</span>
@@ -24,6 +26,15 @@
             >
             
             <button-green
+                v-if="idEditTask"
+                class="edit-task" 
+                @click="this.taskEdit"
+            >
+                Изменить
+            </button-green>
+
+            <button-green
+                v-else
                 class="add-task" 
                 @click="this.addTask"
             >
@@ -41,14 +52,16 @@
         computed: {
             ...mapState(useTaskStore, [
                 'task',
-                'taskError'
+                'taskError',
+                'idEditTask'
             ])
         },
 
         methods: {
             ...mapActions(useTaskStore, [
                 'openTaskForm',
-                'addTask'
+                'addTask',
+                'taskEdit'
             ])
         }
     }
@@ -95,7 +108,8 @@
         display: block;
     }
 
-    .add-task {
+    .add-task,
+    .edit-task {
         width: 100%;
     }
 

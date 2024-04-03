@@ -3,7 +3,7 @@
 
   <header>
     <span class="title">Задачи:</span>
-    <button-green @click="this.openTaskForm" class="add-task">+ Добавить</button-green>
+    <button-green @click="this.openTaskForm()" class="add-task">+ Добавить</button-green>
   </header>
 
   <task-filter />

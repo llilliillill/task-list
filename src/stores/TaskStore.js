@@ -38,6 +38,7 @@ export const useTaskStore = defineStore('TaskStore', {
             text: ''
         },
 
+        idEditTask: 0,
         showTaskForm: false
     }),
 
@@ -92,8 +93,28 @@ export const useTaskStore = defineStore('TaskStore', {
             this.tasks = this.tasks.filter(task => task.id !== idTask)
         },
 
+        // Изменить задачу
+        taskEdit() {
+            this.tasks = this.tasks.map(task => { 
+                if (task.id === this.idEditTask) {
+                    return { ...task, ...this.task }
+                } else {
+                    return task
+                }
+            })
+            this.openTaskForm()
+        },
+
         // Открыть/закрыть модальное окно добавления задачи
-        openTaskForm() {
+        openTaskForm(objEdit) {
+            if (objEdit) {
+                this.idEditTask = objEdit.id
+                this.task.title = objEdit.title
+                this.task.text = objEdit.text
+            } else {
+                this.idEditTask = 0
+                this.task = { title: '', text: '' }
+            }
             this.showTaskForm = !this.showTaskForm
         },
 
